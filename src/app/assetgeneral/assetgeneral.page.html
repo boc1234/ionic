@@ -1,0 +1,237 @@
+
+<ion-header [translucent]="true" style="display: none;">
+ 
+  <ion-toolbar class="header" >
+    <!-- [color]="networkStatus && networkStatus.connected ? 'primary' : 'dark'" -->
+    <!-- <ion-menu-button slot='start' menu="start" ></ion-menu-button> -->
+    <ion-title (click)="clickHome()" style="cursor: pointer;" style="z-index: 10;">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3">
+            Scan
+          </ion-col>
+          <ion-col style="line-height: 25%;">
+            <br>     
+          </ion-col>
+          <ion-col>
+          
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-header>
+  <ion-toolbar style="text-align: center;">
+    <!-- <ion-menu-button slot='start' menu="start" style="z-index: 1000;" class="topmenu1" ></ion-menu-button> -->
+    <ion-title>Asset</ion-title>
+     <!-- <ion-img style="position: relative;top: 0%; width: 5%; height: 5%; " src="./assets/image/Screenshot.png"></ion-img> -->
+  </ion-toolbar>
+ 
+</ion-header>
+<ion-content  (dblclick)="operation.takeScreenshot()"> 
+  <ion-searchbar  (click)="changePageSearch()" ></ion-searchbar>
+    <div  style="width: 0%; height: 0px;right: 0%; top:0%;z-index: -5;" >
+      <input style="height: 0%;width: 0%; border: white; z-index:-5;" type="text"  id="myTextInput" value="" autofocus="autofocus" onfocus="this.select()"  [(ngModel)]="this.postDataAssetGeneral.A_No"  onclick="" />
+    
+    </div>
+ 
+    
+  <div style=" width: 100%; height: 100%;overflow-y: scroll; " translucent="true" >
+    <ion-segment value="detail" >
+      <ion-segment-button value="detail" (click)="clickDetail()">
+        <ion-label>Detail</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="history"(click)="clickHistory()">
+        <ion-label>History</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="purchase" (click)="clickPurchase()">
+        <ion-label>Purchase</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+    <br>
+    <button  ion-button (click)="this.newOperationService.getAssetNumber()" type="hidden" id="auto_trigger"  style="display: none;">enter</button>
+     <ion-item-divider style="background-color: white;">
+      <!-- <ion-searchbar (change)="ta($event)" ></ion-searchbar> -->
+      
+      <ion-item lines=none style="width: 70%;">
+        <ion-input ng-readonly="true" placeholder="Click For Scan"type="text" #myTextInput1 id="myTextInput1"  autofocus="autofocus" onfocus="this.select()"  [(ngModel)]="this.dataService.postData.A_No"  onclick="" >
+        
+      </ion-input>
+      </ion-item>&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;
+      <ion-item lines=none style="right: 0; ">
+      <button  style="width: 15%; height: 70%; background-color: white; right: 15%; "(click)="scanBarcode()">
+          <ion-icon name="camera-outline" style="zoom: 2;text-align: center;"></ion-icon>
+        </button>
+      </ion-item>
+    </ion-item-divider>
+   
+    <!-- <div style="height: 20%;">
+      <label style="color: white;padding-top: 50px;">{{this.postDataAssetGeneral.test}}</label>
+    </div> -->
+    
+    <!-- <ion-grid style="height: 70px ; width: 100%;background-color: rgb(12, 12, 85);">
+     
+      <ion-row style="height: 100%; width: 100%;">
+        <div  class="{{scanButton}}" style="width: 16.6%; height: 100%; text-align: center;line-height: 70%;"(click)="clickScan()">
+          <div style="width:100%;height: 15%;" ></div>
+          <ion-icon name="barcode-outline" style=" zoom: 1.5;"></ion-icon><br>
+          <ion-label style="  font-size: 10px;"> Scan</ion-label>
+  
+      </div>
+       <div style="width: 16.6%; height: 100%; text-align: center; line-height: 70% ;" (click)="scanBarcode()">
+        <div style="width:100%;height: 15%;" ></div>
+        <ion-icon name="camera-outline" style="color: white;  zoom: 1.5;"></ion-icon><br>
+        <ion-label style="  color: white; font-size: 10px;"> Camera Scan</ion-label>
+      </div>  
+        <div class="{{detailButton}}" style="width: 16.6%; height: 100%; text-align: center; line-height: 70%; " (click)="clickDetail()">
+            <div style="width:100%;height: 15%;" ></div>
+             <ion-icon name="reader-outline" style="  zoom: 1.5;"></ion-icon><br>
+             <ion-label style=" font-size: 10px;"> Detail</ion-label>
+     
+        </div>
+        <div class="{{historyButton}}"style="width: 16.6%; height: 100%; text-align: center; line-height: 70%;"(click)="clickHistory()">
+          <div style="width:100%;height: 15%;" ></div>
+          <ion-icon name="book-outline" style="  zoom: 1.5;"></ion-icon><br>
+          <ion-label style="  font-size: 10px;"> History</ion-label>
+     </div>
+     <div class="{{purchaseButton}}"style="width: 16.6%; height: 100%; text-align: center; line-height: 70%;"(click)="clickPurchase()" >
+      <div style="width:100%;height: 15%;" ></div>
+      <ion-icon name="cart-outline" style="  zoom: 1.5;"></ion-icon><br>
+      <ion-label style="  font-size: 10px;"> Purchase</ion-label>
+    </div>
+    <div style="width:16.6%; height: 100%; text-align: center; line-height: 70%;" (click)="clickRefresh()">
+      <div style="width:100%;height: 15%;" ></div>
+      <ion-icon name="refresh-outline" style="color: white;  zoom: 1.5;"></ion-icon><br>
+      <ion-label style="  color: white; font-size: 10px;"> Refresh</ion-label>
+    </div>
+      </ion-row>
+    </ion-grid> -->
+    <!-- <ng-template [ngIf]="dataService.data.A_No != '' || dataService.postDataSearch.A_No != '' " > -->
+   <div id="detail_page" style="line-height: 1; " >
+    <ion-list style="margin: 10px 40px 40px 40px;">
+    
+        <ion-label style="text-align: center;"><h1>A-133838</h1></ion-label>
+      <br>
+      <ion-label >
+        <h2><b>IT-Number</b> &nbsp;&nbsp;<h3> {{dataService.data.ITNo}} </h3></h2><br>
+        <h2><b>Location</b> &nbsp;&nbsp;<h3> {{dataService.data.location}}</h3></h2><br>
+        <h2><b>Manufacturer</b><h3>{{ this.dataService.data.Manufacturer}}</h3></h2><br>
+        <h2><b>Category</b><h3>{{  this.dataService.data.category}}</h3></h2><br>
+        <h2><b>Serial Number</b><h3>{{dataService.data.serial_number}}</h3></h2><br>
+        <h2><b>Description</b><h3>{{dataService.data.Description}}</h3></h2><br>
+
+        <!-- <h2><b>Location</b><h3>{{dataService.data.locationID}}</h3></h2><br> -->
+      </ion-label>
+    </ion-list>
+    <!-- <ion-button (click)="takeScreenshot()">save</ion-button> -->
+
+   </div> 
+  <!-- </ng-template> -->
+    
+    <div id="history_page" style="width: 90%;margin-top: 10px; text-align: center; display: none;">
+
+          <ion-list  >
+            <ion-label style="text-align: center;"><h1>A-{{dataService.data.A_No}}</h1></ion-label>
+
+            <ion-item lines = none style="border-bottom: solid 1px;" readonly   >
+              <!-- *ngFor="let getH of this.dataService.dataHistoryRepair.data; index as i" -->
+              <ion-label >
+                {{this.dataService.dataHistoryRepair.date}}<br>
+                {{this.dataService.getDataHistory.getDate[i]}}
+              </ion-label>
+            
+              <!-- <ion-label position="floating"></ion-label>
+              <ion-textarea rows="1" cols="20" style="border-bottom: solid 1px;" readonly   *ngFor="let getH of this.dataService.postDataHistory.eleHistoryID; index as i"  [selected]="i===0">
+            {{this.dataService.getDataHistory.getDate[i]}} 
+              </ion-textarea> -->
+            </ion-item>
+           
+          </ion-list>
+    </div>
+
+    <div id="purchase_page" style="width: 90%;margin-top: 10px; text-align: center; display: none;" >
+      <ion-list>
+        <ion-label style="text-align: center;"><h1>A-{{dataService.data.A_No}}</h1></ion-label>
+
+      </ion-list>
+    </div> 
+  
+  </div>
+  <!-- <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+    <ion-fab-button color="dark">
+      <ion-icon md="caret-up" ios="chevron-up-circle-outline"></ion-icon>
+       
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button color="dark">
+        <ion-icon name="swap-horizontal-outline"   ></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button color="dark">
+        <ion-icon name="add-circle-outline"></ion-icon>
+      </ion-fab-button>
+   
+    </ion-fab-list>
+  </ion-fab> -->
+  
+</ion-content>
+
+
+<ion-footer style="height: 9%; border-top : solid 0.3px rgb(163, 162, 162); z-index: 100; background-color: white;">
+ <ion-grid style="height: 100%;">
+   <ion-row style="height: 100%;">
+     <ion-col size="3" style="text-align: center; line-height: 50%; height: 100%;" (click)="operation.changePageHome()">
+     
+      <div style="height: 60%; text-align: center;">
+        <ion-icon name="home-outline" style="color: black;zoom: 1.5; width: 100%;height: 100%; "></ion-icon><br>
+       <ion-label style="font-size: small;">Home</ion-label>
+      </div>
+      
+     </ion-col>
+
+     <ion-col size="3"  style="text-align: center; line-height: 50%;color: #2780EA ;" (click)="operation.changePageAsset()">
+      <div style="height: 60%; text-align: center;">
+      <ion-icon name="scan" style="zoom: 1.5; width: 100%;height: 100%; "></ion-icon>
+       <ion-label style="font-size: small;">Scan</ion-label>
+      </div>
+    </ion-col>
+     <ion-col size="3" style="text-align: center; line-height: 50%;color: black;" (click)="operation.changePageEdit()">
+      <div style="height: 60%; text-align: center;">
+     <ion-icon name="pencil-outline" style="zoom: 1.5;width: 100%;height: 100%; "></ion-icon><br>
+      <ion-label style="font-size: small;">Update</ion-label>
+      </div>
+   </ion-col>
+    <ion-col size="3" style="text-align: center; line-height: 50%;" (click)='operation.changePageAccount()'>
+      <div style="height: 60%; text-align: center;">
+      <ion-icon name="person-circle-outline" style="color: black; zoom: 1.5;width: 100%;height: 100%;"></ion-icon><br>
+       <ion-label style="font-size: small;">Account</ion-label>
+      </div>
+    </ion-col>
+   </ion-row>
+ </ion-grid>
+</ion-footer>
+
+
+
+<!-- <ion-content>
+  <ion-card>
+    <ion-input [(ngModel)]="postDataAssetGeneral.test"></ion-input>
+    <ion-input [(ngModel)]="postDataAssetGeneral.s"></ion-input>
+    
+    <ion-item *ngFor="let getH of postDataAssetGeneral.test2;  let i = index">
+      <ion-label>{{getH}}</ion-label>
+    </ion-item>
+    <ion-item *ngFor="let getI of postDataAssetGeneral.s2; let i = index">
+      <ion-label>{{getI}}</ion-label>
+    </ion-item>
+   
+    <ion-button (click)="add()">
+      aa
+    </ion-button>
+    <ion-button (click)="addMaterial()                                                                     ">
+      asds
+    </ion-button>
+  </ion-card>
+</ion-content> -->

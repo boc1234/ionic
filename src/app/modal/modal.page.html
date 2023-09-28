@@ -1,0 +1,31 @@
+<ion-content>
+  <ion-list>
+    <ion-list-header style="font-size: large; ">
+      <ion-label>
+        <h>{{this.dataService.profile.fname}}&nbsp;{{this.dataService.profile.lname}}</h>
+        <h5>&nbsp;&nbsp;{{this.dataService.profile.empno}}</h5>
+        <!-- <h5>&nbsp;&nbsp;{{this.dataService.profile.department}}</h5> -->
+      </ion-label>
+      
+    </ion-list-header>
+   
+    <!-- <ion-item>
+      <ion-label >
+        <ion-icon slot="start" name="person-outline"></ion-icon>
+        Profile
+      </ion-label>
+    </ion-item> -->
+    <ion-item>
+      <ion-label (click)="clickHistory()">
+        <ion-icon name="book-outline"></ion-icon>
+        History
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label (click)="logout()">
+        <ion-icon name="log-out-outline"></ion-icon>
+        Logout
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

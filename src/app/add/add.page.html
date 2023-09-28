@@ -1,0 +1,167 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar class="header"  [color]="networkStatus && networkStatus.connected ? 'primary' : 'dark'">
+    <ion-menu-button slot='start' menu="start" ></ion-menu-button>
+    <ion-title>
+      เพิ่ม
+    </ion-title>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content >
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content ></ion-refresher-content>
+  </ion-refresher>
+
+
+      <ion-grid>
+        <ion-row>
+          <ion-col  size-md="4" size-lg="4">
+            <ion-card style="width: 90%; left: 5%;">
+              <ion-card-content>
+              <ion-label >location</ion-label>
+              <ion-item>
+                <ion-label>ค้นหาสถานที่</ion-label>
+                <ion-select [(ngModel)]="postDataAdd.getL" (ngModelChange)="selectLocation2($event)">
+                  <ion-select-option *ngFor="let getL of dataService.dataAdd.ele" [value]="getL" >{{getL}}</ion-select-option>
+               </ion-select>     
+              </ion-item>
+            
+              <br>
+                <ion-label >floor</ion-label>
+            
+              <ion-item > 
+                <ion-label></ion-label>
+                <ion-select id="floor"  [(ngModel)]="postDataAdd.getF"  (ngModelChange)="selectRoom($event)" disabled=true>
+                  <ion-select-option   *ngFor="let getF of dataService.dataAdd.ele2" [value]="getF">{{getF}}</ion-select-option>
+               </ion-select>
+              </ion-item>
+
+                <ion-label ><br>Category</ion-label>
+                  <ion-item>
+                    <ion-label></ion-label>
+                    <ion-select [(ngModel)]="postDataAdd.getCategory" (ngModelChange)="chooseCategory($event)" >
+                      <ion-select-option *ngFor="let getCategory of dataService.dataAdd.eleCategory" [value]="getCategory" >{{getCategory}}</ion-select-option>
+                   </ion-select>
+                  </ion-item>
+                  
+                  <ion-label ><br>Description</ion-label>
+                  <ion-item>
+                    <ion-label></ion-label>
+                    <ion-select [(ngModel)]="postDataAdd.getDescription" (ngModelChange)="chooseDescription($event)" >
+                      <ion-select-option *ngFor="let getDescription of dataService.dataAdd.eleDescription" [value]="getDescription" >{{getDescription}}</ion-select-option>           
+                   </ion-select>            
+                  </ion-item> 
+
+              </ion-card-content>
+            </ion-card>
+           
+          </ion-col>
+          <ion-col size="6" size-xs="12" size-sm="12" size-md="8" size-lg="8">
+            <ion-card id="card_scan" style="width: 90%; left: 5%;">
+              <ion-card-content>
+            <ion-grid>
+              <ion-row>
+                
+                <ion-col  >
+                  <button ion-button (click)="selectLocation()" type="hidden" id="btn"  style="display: none;">enter</button>
+                  <button ion-button (click)="selectCategory()" type="hidden" id="btnCategory"  style="display: none;">enter</button>
+                  <button ion-button (click)="selectDescription()" type="hidden" id="btnDescription"  style="display: none;">enter</button>
+                  <button ion-button (click)="selectLocation()" type="hidden" id="btn"  style="display: none;">enter</button>
+               
+                  <ion-card-content >
+                    <ion-input placeholder="CLICK FOR SCAN" style="height: 50px;" name = "A_No" type="text" value= "" autofocus="autofocus" onfocus="this.select()"   [(ngModel)]="dataService.dataAdd.A_No" onclick=""></ion-input>
+                  
+                     <br>
+                     <ion-card-title style="text-align: center;">{{dataService.dataAdd.A_No}}</ion-card-title>
+
+                       
+                      
+                       
+                    </ion-card-content>
+              
+            
+                          
+                  
+                   <ion-card-header >
+        
+                   
+                 </ion-card-header>
+                  
+                  <ion-card-content >
+                
+                
+                  <ion-label  ><br>IT-No</ion-label>
+                  <ion-item>
+                    <ion-input [(ngModel)]="dataService.dataAdd.ITNo"  ></ion-input>
+                  </ion-item>
+                
+                  
+                  <ion-label ><br>รหัสพนักงาน</ion-label>
+                  <ion-item>
+                    <ion-input [(ngModel)]="dataService.dataAdd.emp_ID" ></ion-input>
+                  </ion-item>
+                
+                  <ion-label ><br>สถานที่</ion-label>
+                  <ion-item>
+                    <ion-input id = "location"[(ngModel)]="this.dataService.dataAdd.room" ></ion-input>
+                  </ion-item>
+                  
+                  
+                  
+                  <ion-label ><br>Category</ion-label>
+                  <ion-item>
+                    <ion-input id = "category"[(ngModel)]="this.dataService.dataAdd.category" ></ion-input>
+                  </ion-item>
+
+                 
+                 
+
+                  <ion-label ><br>Serial Number</ion-label>
+                  <ion-item>
+                    <ion-input id = "location"[(ngModel)]="this.dataService.dataAdd.serial_number" ></ion-input>
+                  </ion-item>
+
+                  <ion-label ><br>Manufacturer</ion-label>
+                  <ion-item>
+                    <ion-input id = "location"[(ngModel)]="this.dataService.dataAdd.manufacturer" ></ion-input>
+                  </ion-item>
+              
+                  <ion-label ><br>Description</ion-label>
+                  <ion-item>
+                    <ion-textarea id = "description"[(ngModel)]="this.dataService.dataAdd.description" ></ion-textarea>
+                  </ion-item>
+                
+        
+        </ion-card-content>
+      
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+         
+            <ion-grid>
+              <ion-row class="ion-align-items-end">
+                <ion-col size="6" size-xs="12" size-sm="8" size-md="8" size-lg="6">
+                  <button   style="background-color: rgb(90, 150, 219);width: 100%; padding: 10px;" ion-button (click)="addMaterial()" >ADD</button>
+                </ion-col>
+              </ion-row>
+              </ion-grid>
+              </ion-card-content>
+      </ion-card>
+
+     
+    </ion-col>
+   
+      </ion-row>
+      </ion-grid>
+
+
+
+
+
+   <ion-col  size="6" size-xs="12" size-sm="12" size-md="12" size-lg="6" >
+  
+</ion-col>
+
+
+
+</ion-content>

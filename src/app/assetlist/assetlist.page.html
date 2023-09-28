@@ -1,0 +1,526 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-menu-button slot='start' menu="start" style="z-index: 1000;" class="topmenu"></ion-menu-button>
+    <div >
+      <ion-grid>
+        <!-- style="background-color: rgb(248, 247, 255);" -->
+        <ion-row>
+           <ion-col size="2">
+           </ion-col>
+           <ion-col >
+             <ion-grid class="menu1"  >
+               <ion-row >
+                 <ion-col>
+                
+                     <label style="cursor: pointer; height: 20px; font-weight: bold;font-size: large" ></label>
+                  
+                 </ion-col>
+                 <ion-col>
+                
+                   <label (click)='clickHome()' style="cursor: pointer; height: 20px; font-weight: bold;font-size: large">Home</label>
+               
+                 </ion-col>
+                 <ion-col>
+                  
+                   <label (click)="clickAsset()"style="cursor: pointer; height: 20px; font-weight: bold;font-size: large" >Asset</label>
+                  
+                 </ion-col>
+                 <ion-col>
+                
+                  <label style="cursor: pointer;" ></label>
+            
+                </ion-col>
+               </ion-row>
+             </ion-grid>
+             
+
+          </ion-col>
+          <ion-col size="2">
+            <ion-grid>
+              <ion-row style="margin-top: 2%;"(click)="presentPopover($event)">
+                 <ion-icon name="person-circle-outline" style="zoom: 1.3; top: 40%;cursor: pointer ; " ></ion-icon>
+                  <ion-label class="name" style="right: 0%; top: 40%; font-size: 15px;cursor: pointer ;" >{{this.dataService.profile.username}}</ion-label>
+              </ion-row>
+            </ion-grid>
+           </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid  >
+    <ion-row>
+      <ion-col size="2">
+ 
+      
+        <ion-card side="start" content-id="main-content" class="sidenav"> 
+          <ion-card-header>
+              <ion-title style="font-weight: bold; cursor: pointer;" (click)="this.selectMaterial10(0)">ASSET</ion-title>
+          </ion-card-header>
+          <ion-card-content >
+            <button ion-button (click)="selectStatus()" type="hidden" id="btnStatusAsset"  style="display: none;">enter</button>
+            <!-- <button ion-button (click)="selectCategory()" type="hidden" id="btnCategoryAsset"  style="display: block;">enter</button> -->
+            <!-- <button ion-button   (click)="selectMaterial10()" type="hidden" id="btnTop10"  style="display: none;">enter</button> -->
+            <button ion-button (click)="allHistory()" type="hidden" id="btnHistory"  style="display: none;">enter</button>
+            
+            <!--  > -->
+            <ion-list >
+              <!-- <ion-item style="cursor: pointer;" (click)="buttonNew()" class="{{this.postDataAssetList.category_color[-1]}}">
+                <ion-icon name="add-circle-outline" class="{{this.postDataAssetList.category_color[-1]}}"></ion-icon>
+                <ion-label>
+                  Add
+                </ion-label>
+              </ion-item> -->
+
+              <li class="sub">
+              <ion-item (click)='showsub()' style="cursor: pointer;" >
+                <ion-label>Category</ion-label>
+                <ion-icon name="chevron-down-outline"size= "small" id="down"></ion-icon>
+                <ion-icon name="remove-outline"size= "small" id="up" style="display: none;"></ion-icon>
+              </ion-item>
+              <ul  style="display: none;" id="wrappermenuasset">
+                
+              <ion-item *ngFor="let getCategory of this.dataService.dataAssetList.eleCategory; let i = index" style="cursor: pointer;"class="{{this.postDataAssetList.category_color[i]}}" (click)="selectAction2(i)">
+                
+                <ion-label >
+                  {{getCategory}}
+                </ion-label>
+               
+              </ion-item>
+              </ul>
+            </li>
+            <!-- *ngFor="let getCategory of this.dataService.dataAssetList.eleCategory; let i = index" style="cursor: pointer;" -->
+            <li >
+                
+              <ion-item (click)="showsubLocation()" style="cursor: pointer;">
+                <ion-label >Location</ion-label>
+                <ion-icon name="chevron-down-outline"size= "small" id="down2" ></ion-icon>
+                <ion-icon name="remove-outline"size= "small" id="up2" style="display: none;"></ion-icon>
+              </ion-item>
+              <ion-searchbar placeholder="" id="searchlocation" style="width: 100%; height: 5%; display: none;" (ionInput)="filterLocation($event)" ></ion-searchbar>
+                <ul  style="display: none;overflow-y: scroll;height: 500px; " id="wrappermenulocation">
+                  
+                <ion-item *ngFor="let item of this.dataService.arrL; let i = index" style="cursor: pointer;"class="{{this.postDataAssetList.category_color[i]}}" (click)="getMaterialBylocation(item.Location)">
+                  
+                  <ion-label readonly >
+                    {{item.Location}}
+                  </ion-label>
+                 
+                </ion-item>
+                </ul>
+              </li>
+              <!-- <ion-item>
+                <ion-label>Trash</ion-label>
+              </ion-item>
+              <ion-item>
+                <ion-label>Spam</ion-label>
+              </ion-item> -->
+            </ion-list>
+  
+          </ion-card-content>
+        </ion-card>      
+      </ion-col>
+   
+    
+
+      <ion-col size="8">
+        <div id="addasset" style="display: none;">
+          
+          <!-- <button id="buttonnew" style="width: 100px; height: 30px; margin: 1px; background-color: rgb(62, 226, 62);" (click)="buttonNew()"><ion-icon name="add-circle-outline"></ion-icon>&nbsp; New</button> -->
+          <!-- <button id="bottonedit" style="width: 100px; height: 30px; margin: 1px; background-color: rgb(245, 243, 120);" (click)="buttonEdit()"  ><ion-icon name="create-outline"></ion-icon>&nbsp; Edit</button> -->
+          
+       </div>
+       
+        <ion-card class="showasset" >
+          <div id="menuasset" style="display: none;">
+            <ion-buttons >
+              <ion-button (click)="buttonGeneral()" id="buttongeneral" style="width: 15%; border:solid 1px blue;border-top: thick solid blue; ">
+              General
+            </ion-button>
+            <ion-button style="width: 15%; border:solid 1px rgb(226, 223, 223) " (click)="buttonDetail()" id="buttondetail">
+              Detail
+            </ion-button>
+            <ion-button style="width: 15%; border:solid 1px rgb(226, 223, 223) " (click)="buttonPurchase()" id="buttonpurchase">
+              Purchasing
+            </ion-button>
+            <ion-button style="width: 15%; border:solid 1px rgb(226, 223, 223) " (click)="buttonHistory()" id="buttonhistory">
+              History
+            </ion-button>
+            </ion-buttons>
+            
+            <!-- (ionInput)="filterArr($event)" -->
+          </div>
+          <ion-card-content id="show"  >
+            <ion-searchbar style="width: 40%;" placeholder="Search A-Number" (change)="searchItem()" [(ngModel)]="this.dataService.postData.A_No" ></ion-searchbar>
+            <!-- <ion-card style="width: 98%; right: 0;  " >
+              <ion-grid >
+                <ion-row  style="text-align:left;">
+                  <ion-col size=1></ion-col>
+                  <ion-col   >
+                    <ion-icon name="flash-outline" style="color:green; zoom: 2;cursor: pointer;" (click)="status1()"></ion-icon>
+                    <ion-label style="position: absolute; padding-top: 5px;cursor: pointer;font-weight: bold; "(click)="status1()">ปกติ</ion-label>
+                  </ion-col>
+                  <ion-col  >
+                    <ion-icon name="construct-outline" style="color:blue; zoom: 2;cursor: pointer;"(click)="status3()" ></ion-icon>
+                    <ion-label style="position: absolute; padding-top: 5px;cursor: pointer;font-weight: bold;"(click)="status3()">ส่งซ่อม</ion-label>
+                  </ion-col>
+                  <ion-col  >
+                    <ion-icon name="flash-off-outline" style="color:red; zoom: 2;cursor: pointer;"(click)="status2()" ></ion-icon>
+                    <ion-label style="position: absolute; padding-top: 5px;cursor: pointer;font-weight: bold;" (click)="status2()">เสีย</ion-label>
+                  </ion-col>
+              
+                  <ion-col  >
+                    <ion-icon name="trash-outline" style="color:black; zoom: 2;cursor: pointer;" (click)="status4()"></ion-icon>
+                    <ion-label style="position: absolute; padding-top: 5px;cursor:pointer;font-weight: bold;"(click)="status4()">ตัดจำหน่าย</ion-label>
+                  </ion-col>
+                  
+                  <ion-col (click)="status5()" style="cursor: pointer;">
+                    <ion-icon name="add-circle-outline" style="color:lightsalmon; zoom: 2;" ></ion-icon>
+                    <ion-label style="position: absolute; padding-top: 5px;cursor: pointer; font-weight: bold;" >นำเข้าใหม่</ion-label>
+                  </ion-col>
+                  <ion-col (click)="status6()" style="cursor: pointer;">
+                    <ion-icon name="shuffle-outline" style="color:mediumpurple; zoom: 2;" ></ion-icon>
+                    <ion-label style="position: absolute; padding-top: 5px; cursor:pointer; font-weight:bold"  >โอนย้าย</ion-label>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+     
+            </ion-card> -->
+           
+  
+            
+            <ion-grid>
+              <ion-card style="line-height: 2;">
+              <ion-row >
+                <!-- <ion-col size="0.3" style="text-align: center;  " >
+                  <label style="font-size: larger; font-weight: bold; color: #000;" id="status_text" >Status</label> 
+                </ion-col> -->
+                <ion-col size="2.3" style="text-align: center; ">
+                  <label style="font-size: larger; font-weight: bold; color: #000;">A-No</label>
+                </ion-col>
+                <ion-col size="2.3" style="text-align: center; ">
+                  <label style="font-size: larger; font-weight: bold; color: #000;">Serial-Number</label>
+                </ion-col>
+                <ion-col size="2.3" style="text-align: center; ">
+                  <label style="font-size: larger;font-weight: bold; color: #000">User</label>
+                </ion-col>
+                <ion-col size="2.3" style="text-align: center;">
+                  <label style="font-size:larger; font-weight:bold; color:  #000;">Location</label>
+                </ion-col>
+                <ion-col size="2.2" style="text-align: center;" >
+                  <label style="font-size:larger; font-weight:bold; color:  #000; ">Last Update</label>&nbsp;
+                  <ion-icon name="{{this.icon.last_update}}"(click)="sortLastUpdate()" ></ion-icon>
+                </ion-col>
+                
+              </ion-row>
+                  
+              <ion-row *ngFor="let item of data; let i = index;let item2 of arr" id="searchrow"  style="text-align: center;" >
+            
+
+                <!-- class="{{this.postDataAssetList.table_color[i]}}" -->
+                <ion-col size=0.5></ion-col>
+                <ion-col size="0.3" style=" text-align: right;height: 53%;">
+                  <ion-icon class="{{postDataAssetList.status_color[i]}}" name="ellipse" style=" zoom: 1; text-align: right;" ></ion-icon>
+                  </ion-col>
+                <ion-col  size="1.5"  style="text-align: left;">
+                 <a (click)="chooseAll(this.postDataPageMaterial.page_A_No[i])"style="cursor: pointer;  font-weight: bold;" >{{this.postDataPageMaterial.all[i].A_No}}</a>
+                </ion-col>
+                <ion-col size="2.3" >
+                  {{this.postDataPageMaterial.all[i].Serial_Number}}
+                  <!-- {{this.postDataPageMaterial.page_serialnumber[i]}} -->
+                </ion-col>
+                <ion-col size="2.3" >
+                 
+                </ion-col>
+                <ion-col size="2.3" >
+                   {{this.postDataPageMaterial.all[i].Location}}
+                   <!-- {{this.postDataPageMaterial.page_location[i]}} -->
+                </ion-col>
+                <ion-col size="2.2" >
+                  {{this.postDataPageMaterial.all[i].Last_Update}}
+                  <!-- {{this.postDataPageMaterial.page_last_update[i]}} -->
+                </ion-col>
+
+              </ion-row>
+              </ion-card>
+            </ion-grid>
+
+            <div style="height: 800px;display: block;" id="pageMaterial">
+              <ion-grid>
+                <ion-row>
+              
+                  <ion-col size="6"></ion-col>
+                  
+                  <ion-col size="0.7">
+                    <ion-label style="right:0%" >Page</ion-label>
+                  </ion-col>
+                  <ion-col size='0.5'>
+                    <button style="background-color: white;" (click)="backPage(this.dataService.countpage)">
+                      <ion-icon name="caret-back-outline"></ion-icon>
+                    </button>
+                  </ion-col>
+                  <ion-col size='4'>
+                    <div class="some_class" *ngFor="let getPage of this.showpage; let i = index">
+                      
+                     <ion-label class="{{this.assetPage[i]}}" style=" cursor: pointer;float: left;clear: none;display: block;padding: 0px 0.5em 0px 1px;font-size: small;"(click)="choosePageMaterial(this.showpage[i+1]+'0')">
+                      {{this.showpage[i+1]}}
+                    </ion-label>
+                    
+                   </div>
+                   <button class="some_class"  style="background-color: white;"(click)="changePage(this.dataService.countpage)">
+                      <ion-icon name="caret-forward-outline" zoom="1"></ion-icon>
+                     </button>
+               
+           
+                  </ion-col>
+                  <ion-col >
+                    
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+              
+              
+
+            </div>
+            
+            
+          </ion-card-content>
+
+
+          <ion-card-content id="general" style="display: none;" >
+            <ion-grid>
+              <ion-row>
+                <ion-col size="8">
+                  
+                  <ion-grid>
+                    <ion-row>
+                      <ion-col size="6">
+                        <ion-label>A-Number</ion-label>
+                           <ion-item>
+                            <ion-input  [(ngModel)]="this.dataService.data.A_No" id="A_No" readonly="{{variable}}"></ion-input>
+                          </ion-item>
+                          <br>
+                        <ion-label>IT-Number</ion-label>
+                           <ion-item>
+                            <ion-input [(ngModel)]="this.dataService.data.ITNo" readonly="{{variable}}"></ion-input>
+                          </ion-item>
+                      </ion-col>
+                      <ion-col size="6">
+                        <ion-label>Category</ion-label>
+                        <ion-item>
+                          <!-- <ion-select [(ngModel)]="this.dataService.dataAssetList.category" >
+                            <ion-select-option *ngFor="let getCategory of this.dataService.dataAssetList.eleCategory;" [value]="getStatus" >{{getCategory}}</ion-select-option>   
+                          </ion-select> -->
+                          
+                            <ion-input [(ngModel)]="this.dataService.data.category" readonly="{{variable}}"></ion-input>
+                    
+                        </ion-item>
+                          <br>
+                          <ion-label>Manufacurer</ion-label>
+                           <ion-item>
+                            <ion-input [(ngModel)]="this.dataService.data.Manufacturer"readonly="{{variable}}"></ion-input>
+                          </ion-item>
+                      </ion-col>
+                      <ion-col size="12">
+                          <br>
+                        <ion-label>Description</ion-label>
+                        <ion-item >
+                        <textarea  [(ngModel)]="this.dataService.data.Description" readonly="{{variable}}"></textarea>
+                      </ion-item>  
+
+                      </ion-col>
+                    </ion-row>
+                  </ion-grid>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-img style="width: 150px; height:150px; margin-left: auto; margin-right: auto;  " src="../assets/icon/favicon.png"></ion-img>
+                  <br>
+                  <ion-input type='file' disabled="{{variable}}"></ion-input>
+                </ion-col >
+              </ion-row>
+            </ion-grid>
+            <button style="width: 70px; height: 30px; display: none;" id="add1"(click)="addMaterial()">add</button>
+            <!-- <button style="width: 70px; height: 30px; display:none" id="edit1" (click)="editMaterial()">edit</button> -->
+          </ion-card-content>
+
+
+          <ion-card-content id="detail" style="display: none;">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-label>Status</ion-label>
+                        <ion-item >
+                          <!-- <ion-input [(ngModel)]="this.dataService.dataAssetList.status" readonly="{{variable}}"></ion-input> -->
+                          <!-- <ion-label style="font-size: small; color: rgb(194, 194, 194);">เลือกสถานะ</ion-label> -->
+                          <ion-select [(ngModel)]="this.dataService.dataAssetList.status" id="status" disabled=false >
+                            <ion-select-option  [value]="Repair"  >Repair</ion-select-option>
+                            <ion-select-option  [value]="WriteOff"  >Write-Off</ion-select-option>
+                            <ion-select-option  [value]="Waste"  >Waste</ion-select-option>  
+                          </ion-select>
+                        </ion-item>
+                        <br>
+                  <ion-label>Serial-Number</ion-label>
+                  <ion-item>
+                   <ion-input [(ngModel)]="this.dataService.data.serial_number" readonly="{{variable}}"></ion-input>
+                 </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-label>Location</ion-label>
+                  <ion-item>
+                   <ion-input [(ngModel)]="this.dataService.data.location" readonly="{{variable}}"></ion-input>
+                 </ion-item>
+                 <br>
+                 <ion-label>Update By</ion-label>
+                  <ion-item>
+                   <ion-input [(ngModel)]="this.dataService.dataAssetList.update_by" readonly="{{variable}}"></ion-input>
+                 </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-label>Used By</ion-label>
+                  <ion-item>
+                   <!-- <ion-input [(ngModel)]="this.dataService.dataAssetList.serial_number" readonly="{{variable}}"></ion-input> -->
+                 </ion-item>
+                 <br>
+                 <ion-label>LastUpdate</ion-label>
+                  <ion-item>
+                   <ion-input [(ngModel)]="this.dataService.dataAssetList.update_date" id="last_update" readonly></ion-input>
+                 </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            
+            <button style="width: 70px; height: 30px; display: none;" id="add2" >add</button>
+            <!-- <button style="width: 70px; height: 30px; display:none" id="edit2">edit</button> -->
+          </ion-card-content>
+
+          <ion-card-content id="purchase" style="display: none;">
+            <ion-grid>
+              <ion-row>
+                <ion-col size="4">
+                  <ion-label>Purchase Order Number</ion-label>
+                        <ion-item>
+                          <ion-select  >
+                            <ion-select-option *ngFor="let getStatus of this.dataService.dataAssetList.eleStatus;" [value]="getStatus" >{{getStatus}}</ion-select-option>   
+                          </ion-select>
+                        </ion-item>
+                        <br>
+                  <ion-label>Purchase date</ion-label>
+                  <ion-item>
+                   <ion-input readonly="{{variable}}"></ion-input>
+                 </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-label>Expire</ion-label>
+                  <ion-item>
+                  
+                 </ion-item>
+                 <br>
+                 <ion-label>**</ion-label>
+                  <ion-item>
+                   <ion-input readonly="{{variable}}"></ion-input>
+                 </ion-item>
+                </ion-col>
+                <ion-col size="4">
+                  <ion-label>**</ion-label>
+                  <ion-item>
+            
+                 </ion-item>
+                 <br>
+                 <ion-label>**</ion-label>
+                  <ion-item>
+                   <ion-input readonly="{{variable}}"></ion-input>
+                 </ion-item>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+            <button style="width: 70px; height: 30px; display:none" id="add3">add</button>
+            <!-- <button style="width: 70px; height: 30px; display:none" id="edit3">edit</button> -->
+          </ion-card-content>
+
+
+          <ion-card-content id="history" style="display: none;">
+    
+            <ion-grid>
+              <ion-row>
+                <ion-col size="1" style="text-align: center; background-color:rgb(46, 114, 202);color: white; border: solid 1px grey;" >
+                  <b id="status_text" style="display: none;">Status</b>
+                </ion-col>
+                <ion-col size="2.75" style="text-align: center;background-color:rgb(46, 114, 202);color: white;border: solid 1px grey;">
+                  <b>Date</b>
+                </ion-col>
+                <ion-col size="5.50" style="text-align: center;background-color:rgb(46, 114, 202);color: white;border: solid 1px grey;">
+                  <b>Detail</b>
+                </ion-col>
+                <ion-col size="2.75" style="text-align: center;background-color:rgb(46, 114, 202);color: white;border: solid 1px grey;">
+                  <b>Update By</b>
+                </ion-col>
+               
+                
+              </ion-row>
+              <ion-row *ngFor="let getHistory of data; let i = index" id="{{'row'+i}}" >
+                <ion-col size="1" style="border: solid 1px grey; text-align: center;" >
+                  <ion-icon class="{{this.postDataAssetList.history_color[i]}}" name="ellipse" style=" zoom: 1; text-align: center;" ></ion-icon>
+                  </ion-col>
+                <ion-col  size="2.75"style=" border: solid 1px grey;">
+                  {{this.postDataPageHistory.page_date[i]}} 
+                </ion-col>
+                <ion-col size="5.50" style="border: solid 1px grey;">
+                  {{ this.postDataPageHistory.page_detail[i] }}
+                </ion-col>
+                <ion-col size="2.75" style="border: solid 1px grey;">
+                  {{this.postDataPageHistory.page_update_by[i] }}
+                </ion-col>
+                
+                
+              </ion-row>
+            </ion-grid>
+            <!-- <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)" >
+              <ion-infinite-scroll-content
+                loadingSpinner="bubbles"
+                loadingText="Loading more data...">
+              </ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+             -->
+             <div style="height: 40px;display: block;" id="pagehistory">
+              <ion-grid>
+                <ion-row>
+                  <ion-col size="9"></ion-col>
+                  <ion-col size="0.7">
+                    <ion-label style="right:0%" >Page</ion-label>
+                  </ion-col>
+                  <ion-col >
+                    <div class="some_class" *ngFor="let getPage of this.pageHistory; let i = index" style="cursor: pointer;">
+                     <ion-label class="{{this.postDataPageHistory.status_color[i]}}" style="float: left;clear: none;display: block;padding: 0px 0.5em 0px 1px;font-size: small;"(click)="choosePage(i+'0')">
+                         {{i+1}}
+                      </ion-label>
+                   </div>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </div>
+             
+          </ion-card-content>
+
+
+
+
+
+          <!-- <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)" >
+            <ion-infinite-scroll-content
+              loadingSpinner="bubbles"
+              loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll> -->
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+ 
+ 
+  
+
+  
+</ion-content>

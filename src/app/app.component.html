@@ -1,3 +1,64 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" type="push" contentId="main"   >
+    <ion-header>
+      <ion-toolbar >
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>   
+        <ion-menu-toggle>
+          <ion-item routerLink="./home"  id="location">
+            <ion-icon name="home-outline" slot="start"></ion-icon>
+            <ion-label>Home</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item routerLink="./assetGeneral"  id="location">
+            <ion-icon name="cube-outline" slot="start"></ion-icon>
+            <ion-label>Asset</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      
+        <!-- <ion-menu-toggle>
+          <ion-item routerLink="./updatematerial"  id="location">
+            <ion-icon name="cube-outline" slot="start"></ion-icon>
+            <ion-label>-test-</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink="./add"  id="location">
+            <ion-icon name="add-circle" slot="start"></ion-icon>
+            <ion-label>Add</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink="./chooseadd"  id="location">
+            <ion-icon name="add-circle" slot="start"></ion-icon>
+            <ion-label>Add2</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink="./scan"  >
+            <ion-icon name="add-circle" slot="start"></ion-icon>
+            <ion-label>Update</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink="./updatestatus"  >
+            <ion-icon name="add-circle" slot="start"></ion-icon>
+            <ion-label>Update Status</ion-label>
+          </ion-item>
+        </ion-menu-toggle> -->
+      
+        
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>

@@ -1,27 +1,147 @@
-#container {
-  text-align: center;
+.menu {
+  z-index: 5;
+  --border-color: white;
+}
+// .sidenav {
+//   height: 100%; /* Full-height: remove this if you want "auto" height */
+//   width: 15%; /* Set the width of the sidebar */
+//   position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+//   z-index: 1; /* Stay on top */
+//   // top: 10%; /* Stay at the top */
+//   left: 0;
+//   overflow-x: hidden; /* Disable horizontal scroll */
+//   padding-top: 20px;
+//   display: block;
+// }
 
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+// /* The navigation menu links */
+// .sidenav .ion-item {
+//   padding: 6px 8px 6px 16px;
+//   text-decoration: none;
+//   font-size: 25px;
+//   color: #818181;
+//   display: block;
+ 
+// }
+
+// /* When you mouse over the navigation links, change their color */
+// .sidenav a:hover {
+//   color: #f1f1f1;
+// }
+
+
+
+/* Style page content */
+.main {
+  margin-left: 160px; /* Same as the width of the sidebar */
+  padding: 0px 10px;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+
+.fieldset {
+  overflow: hidden;
+  
 }
 
-#container p {
-  font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+.some-class {
+  float: left;
+  clear: none;
+  border-width: 0px
 }
 
-#container a {
-  text-decoration: none;
+.label1 {
+  float: left;
+  clear: none;
+  display: block;
+  padding: 0px 1em 0px 8px;
+  font-size: small;
+}
+
+input[type=radio],
+input.radio {
+  float: left;
+  clear: none;
+  margin: 2px 0 0 2px;
+}
+
+
+html, body {
+  height: 100%;
+}
+
+#root {
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#wrapper {
+  overflow: hidden;
+  display: none;
+  width: 420px;
+}
+
+#wrapper_lastupdate {
+  overflow: hidden;
+  display: none;
+  width: 100%;
+  
+}
+
+.touch {
+  -webkit-overflow-scrolling: touch;
+}
+
+.label-green{
+  color: green;
+}
+.label-blue{
+  color: blue;
+}
+.label-red{
+  color: red;
+}
+.label-black{
+  color:black;
+}
+.label-lightsalmon{
+  color: lightsalmon;
+}
+.label-mediumpurple{
+  color: mediumpurple;
+}
+.res{
+  left: 15%;
+}
+.topmenu{
+  display: none;
+}
+.name{
+  display: block;
+}
+
+@media screen and (max-width: 1000px){
+  .sidenav{
+    display: none;
+  }
+  .menu1{
+    display: none;
+  }
+  .res{
+    left:7.5%;
+    right:7.5%;
+  }
+  .topmenu{
+    display: block;
+  }
+  .name{
+    display: none;
+  }
+  
+}
+.item-content {
+  background-color:#772222;
 }

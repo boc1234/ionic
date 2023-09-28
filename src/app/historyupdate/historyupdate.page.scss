@@ -1,0 +1,67 @@
+.menu {
+    z-index: 5;
+    --border-color: white;
+}
+.sidenav {
+    height: 100%; /* Full-height: remove this if you want "auto" height */
+    width: 13%; /* Set the width of the sidebar */
+    position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+    z-index: 1; /* Stay on top */
+    // top: 10%; /* Stay at the top */
+    left: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 20px;
+    
+  }
+  
+  /* The navigation menu links */
+  .sidenav .ion-item {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+   
+  }
+  
+  /* When you mouse over the navigation links, change their color */
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  .topmenu{
+      display: none;
+  }
+
+  @media screen and (max-width: 1000px){
+    .sidenav{
+      display: none;
+    }
+    .menu1{
+      display: none;
+    }
+    .res{
+      left:7.5%;
+      right:7.5%;
+    }
+    .topmenu{
+      display: block;
+    }
+    .name{
+      display: none;
+    }
+    .showasset{
+      left: 0%;
+     position: fixed;
+     width: 100%;
+  }
+  .assetmenu {
+    left: 0;
+      
+      --border-color: white;
+  }
+  }
+  .showasset{
+    left: 14%;
+   position: fixed;
+   width: 85%;
+}

@@ -1,0 +1,147 @@
+<ion-header >
+  <ion-toolbar >
+    <ion-menu-button slot='start' menu="start" style="z-index: 1000;" class="topmenu"></ion-menu-button>
+    <!-- <ion-menu-button slot="end" menu="end"></ion-menu-button> -->
+    <div >
+      <ion-grid style="border-bottom: 2px #2780ea;">
+        <ion-row>
+           <ion-col size="2">
+           </ion-col>
+           <ion-col >
+             <ion-grid class="menu1"  >
+               <ion-row >
+                 <ion-col>
+                   <!-- <ion-item lines=none  >
+                     <label style="cursor: pointer; height: 20px; font-weight: bold;font-size: large" ></label>
+                   </ion-item> -->
+                 </ion-col>
+                 <ion-col >
+                  <!-- <ion-item lines=none style="text-align: center;"> -->
+                   <label (click)="clickHome()" style="cursor: pointer; height: 20px; font-weight: bold;font-size: large" >Home</label>
+                  <!-- </ion-item> -->
+                 </ion-col>
+                 <ion-col>
+                  
+                   <label (click)="clickAsset()"style="cursor: pointer; height: 20px; font-weight: bold;font-size: large">Asset</label>
+                 </ion-col>
+                 <ion-col>
+                  
+                  <label style="cursor: pointer; height: 20px; font-weight: bold;font-size: large" ></label>
+                  
+                </ion-col>
+               </ion-row>
+             </ion-grid>
+             
+
+          </ion-col>
+          <ion-col size="2" style="text-align: center;">
+            <ion-grid>
+              <ion-row style="margin-top: 2%;"(click)="presentPopover($event)">
+                 <ion-icon name="person-circle-outline" style="zoom: 1.3; top: 40%;cursor: pointer ; " ></ion-icon>
+                  <ion-label class="name" style="right: 0%; top: 40%; font-size: 15px;cursor: pointer ;" >{{this.dataService.profile.username}}</ion-label>
+              </ion-row>
+            </ion-grid>
+            
+           
+            <!-- <ion-item lines=none  >
+            </ion-item> -->
+                          
+
+           </ion-col>
+        </ion-row>
+      </ion-grid>
+     
+    
+    </div>
+       
+
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  <ion-card side="start" content-id="main-content" class="sidenav"> 
+    <ion-card-header>
+        <ion-title style="font-weight: bold; cursor: pointer;" >History</ion-title>
+    </ion-card-header>
+    <ion-card-content>
+      
+  <ion-list>
+
+    <li class="sub">
+    <ion-item (click)='showsub()' style="cursor: pointer;" >
+      <ion-label>Category</ion-label>
+      <ion-icon name="chevron-down-outline"size= "small" id="down"></ion-icon>
+      <ion-icon name="remove-outline"size= "small" id="up" style="display: none;"></ion-icon>
+    </ion-item>
+    <ul  style="display: none;" id="wrappermenuasset">
+      
+
+    </ul>
+  </li>
+ 
+  </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+<ion-card >
+  <ion-card-content  class="showasset" >
+    <ion-searchbar style="width: 40%;" (ionInput)="filterArr($event)"></ion-searchbar>
+    
+    <ion-grid >
+      <ion-row>
+        <ion-col size="3" style="text-align: center;background-color:rgb(46, 114, 202);color: white; border: solid 1px grey;">
+          <b>Date</b>
+        </ion-col>
+        <ion-col size="3" style="text-align: center;background-color:rgb(46, 114, 202);color: white; border: solid 1px grey;">
+          <b>A-Number</b>
+        </ion-col>
+        <ion-col size="6" style="text-align: center;background-color:rgb(46, 114, 202);color: white; border: solid 1px grey;">
+          <b>Detail</b>
+        </ion-col>
+       
+       
+    
+        
+      </ion-row>
+      <ion-row *ngFor="let item of data;let i = index"  >
+        <ion-col  size="3" style="border: solid 1px grey;" >
+         <a style="cursor: pointer; color:black; font-weight: bold;" > {{this.getData.getDate[i]}}</a>
+        </ion-col>
+        <ion-col size="3" style="border: solid 1px grey;">
+          <a style="cursor: pointer; color:black; font-weight: bold;" > {{this.getData.getA[i]}}</a>
+        </ion-col>
+        <ion-col size="6" style="border: solid 1px grey;">
+          <a  style="cursor: pointer; color:black; font-weight: bold;" >{{this.getData.getDetail[i]}}</a>
+        </ion-col>
+      </ion-row>
+      
+    </ion-grid>
+
+    <div style="height: 40px;display: block;" id="pageMaterial">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="9"></ion-col>
+          <ion-col size="0.7">
+            <ion-label style="right:0%" >Page</ion-label>
+          </ion-col>
+          <ion-col >
+            <div class="some_class" *ngFor="let getPage of this.page; let i = index">
+             <ion-label style=" cursor: pointer;float: left;clear: none;display: block;padding: 0px 0.5em 0px 1px;font-size: small;"(click)="choosePageMaterial(i+'0')">
+              {{i+1}}
+            </ion-label>
+           
+             
+           </div>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+    
+    
+  </ion-card-content>
+</ion-card>
+
+
+
+</ion-content>

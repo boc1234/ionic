@@ -1,0 +1,246 @@
+
+<ion-header  translucent="true" >
+  <ion-toolbar style="text-align: center;">
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen  >
+
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content ></ion-refresher-content>
+  </ion-refresher>
+
+
+
+<div style="width:100%; height: 130px; background-color: #ffffff ">
+  <div style="height: 10%;"></div>
+  <ion-grid style="height: 100%; text-align: center;" >
+    <ion-row> 
+      
+      <ion-col size="4" >
+       
+        <ion-label  style="font-size: x-large;">Total</ion-label ><br><br>
+        <ion-label >{{this.dataService.countasset}}</ion-label >
+      </ion-col>
+      <ion-col size="4">
+          <ion-label style="font-size: x-large;">Repair</ion-label><br><br>
+          <ion-label>20</ion-label>
+      </ion-col>
+      <ion-col size="4">
+        <ion-label style="font-size: x-large;">Test</ion-label><br><br>
+        <ion-label>20</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+  <!-- <ion-slides [options]="slidesOptions" style="height: 100%; padding: 10px;" >
+    <ion-slide >
+      <ion-card style="width: 100%; height: 100%;">
+        <ion-card-header>
+          <ion-card-title >Total</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-label style="font-size: larger;">
+            666
+          </ion-label>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card style="width: 100%; height: 100%;">
+        <ion-card-header>
+          <ion-card-title>Last Update</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-label style="font-size: larger;">
+            {{this.lastdate}}
+          </ion-label>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    <ion-slide>
+      <ion-card style="width: 100%; height: 100%;">
+        <ion-card-header>
+          <ion-card-title>Last Update</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-label style="font-size: larger;">
+            24/02/2021
+          </ion-label>
+        </ion-card-content>
+      </ion-card>
+    </ion-slide>
+    
+  </ion-slides> -->
+</div>
+
+<!-- 
+<ion-slides [options]="slidesOptions" style="height: 100%; padding: 10px;" >
+    <ion-slide > -->
+<ion-card style="width: 100%;  margin: 0; border-radius: 14px 14px 0 0; z-index: 2;;  background-color: #ffffff;">
+  <ion-card-header>
+    <ion-grid>
+      <ion-row>
+        <ion-col size=8>
+          <ion-card-subtitle style="color: rgb(134, 155, 173);">Year</ion-card-subtitle>
+           <ion-card-title style="color: rgb(110, 185, 252);">
+          2021
+         </ion-card-title>
+      
+        </ion-col>
+       
+        <ion-col size=4>
+          <ion-list style="width: 100%;border: 1px ;">    
+            <ion-item lines=none  >
+              <ion-icon  name="calendar-outline" style="color: rgb(110, 185, 252);"></ion-icon>
+              <ion-label style="color: white;">Year</ion-label>
+              <ion-select style="color: white;"  [(ngModel)]="this.year" (ngModelChange)="chooseYear($event)" >
+                <ion-select-option   *ngFor="let getyear of this.array_year; " [value]="this.array_year[i]">{{getyear}}</ion-select-option>
+        
+              </ion-select>
+            </ion-item>
+            </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card-header>
+  <ion-card-content style="text-align: center;">
+        <div id="barChart"></div>
+        <!-- <div  style="margin: 10px;">
+         
+          <button style="background-color: #2780EA ;color: white; "(click)="test()">2020</button>&nbsp;
+          <button style="background-color: #2780EA ;color: white; "(click)="test2()">2021</button>
+           <br>
+        </div> -->
+        
+  </ion-card-content>
+
+</ion-card>
+
+<!-- </ion-slide>
+<ion-slide> -->
+
+<ion-card style="width: 100%; margin: 0;">
+  <ion-card-header>
+    <ion-title></ion-title>
+  </ion-card-header>
+  <ion-card-content>
+    <canvas #barChart></canvas>
+    <ion-item lines =none >
+      <ion-range dual-knobs pin color="primary" min="0" max="200"[(ngModel)]="this.range"(ionChange)="ra()" >
+        <ion-label slot="start" size="small"  >min &nbsp;</ion-label>
+        <ion-label slot="end" style="left: 100%;"  >&nbsp; max</ion-label>
+      </ion-range>
+    </ion-item>
+  </ion-card-content>
+</ion-card>
+
+<!-- </ion-slide>
+    
+</ion-slides> -->
+
+
+<div style="height: 300px; " >
+        
+  <ion-header style="background-color: #1b59a4 ;color: white; padding: 20px;">
+ <ion-title style="color: white;" >
+   Activity
+ </ion-title> 
+</ion-header>
+
+<div style="text-align: center; cursor: pointer;width: 100%;height: 80%;margin-right: 20px;overflow-y: scroll;float: left;"  translucent="true" class="touch">
+
+ <ion-item *ngFor="let getShow of data; let i = index"style="width: 100%;" >
+   <ion-grid >
+     <ion-row>
+       <ion-col size="4">
+         
+         <ion-label style="white-space: normal; font-size: small; position: relative;"class="{{this.postDataHome.status_color[i]}}" >
+           <ion-icon name="{{this.postDataHome.icon[i]}}" style="zoom: 1.2; position: relative;"></ion-icon>
+          {{this.postDataHome.show_history_status[i]}}
+         </ion-label>
+         <ion-label style="white-space: normal; font-size: small; font-weight: bold;" >By :{{this.postDataHome.show_history_update_by[i]}}</ion-label>
+       </ion-col>
+       <ion-col size="5">
+         <ion-label  style="white-space: normal; cursor:pointer " ><a  style="color: rgb(0, 0, 0); ">{{this.postDataHome.show_history_A_No[i]}}</a></ion-label>
+         <ion-label style="white-space:normal; cursor:pointer; font-size: small;">{{this.postDataHome.show_history_detail[i]}}</ion-label>
+       </ion-col>
+       <ion-col size="3">
+         <ion-label style="font-size:small; white-space: normal;" >{{postDataHome.show_history_update_date[i]}}</ion-label>
+       </ion-col>
+     </ion-row>
+   </ion-grid>
+
+ </ion-item>
+
+</div>
+
+</div>
+ <div style="background-color: #1b59a4; height: 15px;"></div>
+<!-- <button (click)="operation.alertSuccess()">15156</button>
+
+  <label>{{this.range_upper}}</label>
+
+
+<label>{{this.range_lower}}</label> -->
+<!-- <ion-button (click)="scrollToTop()"></ion-button> -->
+
+<!-- <ion-fab horizontal="end" vertical="bottom" slot="fixed">
+  <ion-fab-button color="dark">
+   <ion-label (click)="testPage()" >test<br>update<br>page</ion-label>
+     
+  </ion-fab-button>
+  <ion-fab-list side="top">
+    <ion-fab-button color="light">
+      <ion-icon name="logo-facebook"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="light">
+      <ion-icon name="logo-twitter"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="light">
+      <ion-icon name="logo-vimeo"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-button color="light">
+      <ion-icon name="logo-google"></ion-icon>
+    </ion-fab-button>
+  </ion-fab-list>
+</ion-fab> -->
+</ion-content>
+
+<ion-footer style="height: 9%; border-top : solid 0.3px rgb(163, 162, 162); z-index: 100; background-color: white;">
+  <ion-grid style="height: 100%;">
+    <ion-row style="height: 100%;">
+      <ion-col size="3" style="text-align: center; line-height: 50%;color: #2780EA ;">
+        <div style="height: 60%; text-align: center;">
+       <ion-icon name="home" style="zoom: 1.5;width: 100%;height: 100%; "></ion-icon><br>
+        <ion-label style="font-size: small;">Home</ion-label>
+        </div>
+      </ion-col>
+      <!-- <ion-col size="2.4" style="text-align: center; line-height: 50%;color: black;" (click)="operation.changePageSearch()">
+        <div style="height: 60%; text-align: center;">
+       <ion-icon name="search-outline" style="zoom: 1.5;width: 100%;height: 100%; "></ion-icon><br>
+        <ion-label style="font-size: small;">Search</ion-label>
+        </div>
+     </ion-col> -->
+      <ion-col size="3" style="text-align: center; line-height: 50%;color: black;" (click)="operation.changePageAsset()">
+        <div style="height: 60%; text-align: center;">
+       <ion-icon name="scan-outline" style="zoom: 1.5;width: 100%;height: 100%; "></ion-icon><br>
+        <ion-label style="font-size: small;">Scan</ion-label>
+        </div>
+     </ion-col>
+     <ion-col size="3" style="text-align: center; line-height: 50%;color: black;" (click)="operation.changePageEdit()">
+      <div style="height: 60%; text-align: center;">
+     <ion-icon name="pencil-outline" style="zoom: 1.5;width: 100%;height: 100%; "></ion-icon><br>
+      <ion-label style="font-size: small;">Update</ion-label>
+      </div>
+   </ion-col>
+     <ion-col size="3" style="text-align: center; line-height: 50%;color: black"(click)="operation.changePageAccount()">
+      <div style="height: 60%; text-align: center;">
+       <ion-icon name="person-circle" style="zoom: 1.5;width: 100%;height: 100%;"></ion-icon><br>
+        <ion-label style="font-size: small;">Account</ion-label>
+      </div>
+     </ion-col>
+    </ion-row>
+  </ion-grid>
+ </ion-footer>

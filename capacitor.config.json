@@ -1,9 +1,9 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "myApp666",
+  "appId": "com.your.app",
+  "appName": "network",
   "bundledWebRuntime": false,
   "npmClient": "npm",
-  "webDir": "www",
+  "webDir": "src",
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 0

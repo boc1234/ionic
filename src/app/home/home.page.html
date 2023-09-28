@@ -1,20 +1,761 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
+<!-- <ion-app  id="pc" style="display: none;">
+<ion-header [translucent]="true" style="display: none;">
+  <ion-toolbar class="header" [color]="networkStatus && networkStatus.connected ? 'primary' : 'dark'">
+    <ion-menu-button slot='start' menu="start" ></ion-menu-button>
+    <ion-title (click)="clickHome()" style="cursor: pointer;">
+      Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-header >
+  <ion-toolbar>
+    <div>
+      <ion-grid>
+        <ion-row>
+           <ion-col size="2">
+           </ion-col>
+           <ion-col >
+             <ion-grid>
+               <ion-row>
+                 <ion-col>
+                   <label style="cursor: pointer; height: 20px; font-weight: bold;" (click)="clickHome()">DASHBOARD</label>
+                 </ion-col>
+                 <ion-col>
+                   <label style="cursor: pointer; height: 20px; font-weight: bold;"(click)='asset()'>ASSET</label>
+                 </ion-col>
+                 <ion-col>
+                   <label style="cursor: pointer;">test</label>
+                 </ion-col>
+                 <ion-col>
+                  <label style="cursor: pointer;">test</label>
+                </ion-col>
+               </ion-row>
+             </ion-grid>  
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-toolbar>
+</ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+<ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content ></ion-refresher-content>
+  </ion-refresher>
+
+
+<ion-grid>
+   <ion-row>
+     <div style="height:200px ;width: 100%;">
+      <ion-slides  style="height: 100%;"[options]="slidesOptionsHome">
+        <ion-slide  style="height: 90%;">
+          <ion-card style="height: 100%; width: 100%; margin-top: 40px;">
+            <ion-card-header>
+              <ion-title>
+                <ion-label>1</ion-label>
+              </ion-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-label style="font-size: larger;">6555</ion-label>
+            </ion-card-content>
+            
+          </ion-card>
+        
+        </ion-slide>
+        <ion-slide  style="height: 90%;">
+          <ion-card style="height: 100%; width: 100%; margin-top: 40px;">
+            <ion-card-header>
+              <ion-title>
+                <ion-label>2</ion-label>
+              </ion-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-list  >
+                <ion-list-header>
+                  last
+                </ion-list-header>
+                <ion-item>
+                  <ion-label >
+                    <h2>hello</h2>
+                    <h3>yo</h3>
+                    <p>daydream the generetion of miracle</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label >
+                    <h2>hello</h2>
+                    <h3>yo</h3>
+                    <p>daydream the generetion of miracle</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label >
+                    <h2>hello</h2>
+                    <h3>yo</h3>
+                    <p>daydream the generetion of miracle</p>
+                  </ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label >
+                    <h2>hello</h2>
+                    <h3>yo</h3>
+                    <p>daydream the generetion of miracle</p>
+                  </ion-label>
+                </ion-item>
+             
+              </ion-list>
+              
+            </ion-card-content>
+            
+          </ion-card>
+        
+        </ion-slide>
+        <ion-slide  style="height: 90%;">
+          <ion-card style="height: 100%; width: 100%; margin-top: 40px;">
+            <ion-card-header>
+              <ion-title>
+                <ion-label>3</ion-label>
+              </ion-title>
+            </ion-card-header>
+            <ion-card-content>
+              <ion-label style="font-size: larger; ">c</ion-label>
+            </ion-card-content>
+            
+          </ion-card>
+        
+        </ion-slide>
+      </ion-slides>
+     </div>
+   
+  </ion-row>
+  <ion-row>
+   
+    <ion-col size="12" size-xs="12" size-sm="12" size-md="12" size-lg="6" size xl="6">
+
+      <ion-card style="display: none;" id="card2">
+        <ion-card-header >
+        
+          <ion-card-title style="text-align: center;">{{dataService.dataHome.A_No}}</ion-card-title>
+          </ion-card-header>
+          
+          <ion-card-content >
+        
+          <ion-label  ><br>IT-No</ion-label>
+          <ion-item>
+            <ion-input [(ngModel)]="dataService.dataHome.ITNo" type="text"readonly ></ion-input>
+          </ion-item>
+        
+          
+          <ion-label ><br>รหัสพนักงาน</ion-label>
+          <ion-item>
+            <ion-input [(ngModel)]="dataService.dataHome.emp_ID" type="text" readonly></ion-input>
+          </ion-item>
+        
+          <ion-label ><br>แผนก</ion-label>
+          <ion-item>
+            <ion-input [(ngModel)]="dataService.dataHome.Department" type="text" readonly></ion-input>
+          </ion-item>
+        
+          <ion-label ><br>ชื่อ-นามสกุล</ion-label>
+          <ion-item>
+            <ion-input [(ngModel)]="dataService.dataHome.Empname" type="text" readonly></ion-input>
+          </ion-item>
+          
+          <ion-label ><br>สถานที่</ion-label>
+          <ion-item>
+            <ion-input id = "location" [(ngModel)]="this.dataService.dataHome.room" autofocus="autofocus" onfocus="this.select()" readonly ></ion-input>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+
+ 
+
+    </ion-col>
+    <ion-col size="12" size-xs="12" size-sm="12" size-md="12" size-lg="6" size xl="6">
+
+      <ion-card style="display: none;" id="color_status">
+        <ion-card-header>
+         <ion-card-title>สถานะ</ion-card-title> 
+        </ion-card-header>
+        <ion-card-content>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-icon name="ellipse" style="color:green; zoom: 2;" ></ion-icon>
+                <ion-label style="position: absolute; padding-top: 5px;">ปกติ</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-icon name="ellipse" style="color:blue; zoom: 2;" ></ion-icon>
+                <ion-label style="position: absolute; padding-top: 5px;">ส่งซ่อม</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-icon name="ellipse" style="color:red; zoom: 2;" ></ion-icon>
+                <ion-label style="position: absolute; padding-top: 5px;">เสีย</ion-label>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-icon name="ellipse" style="color:rgb(140, 211, 172); zoom: 2;" ></ion-icon>
+                <ion-label style="position: absolute; padding-top: 5px;">ตัดจำหน่าย</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-icon name="ellipse" style="color:lightsalmon; zoom: 2;" ></ion-icon>
+                <ion-label style="position: absolute; padding-top: 5px;">นำเข้าใหม่</ion-label>
+              </ion-col>
+              <ion-col>
+                <ion-icon name="ellipse" style="color:mediumpurple; zoom: 2;" ></ion-icon>
+                <ion-label style="position: absolute; padding-top: 5px;">โอนย้าย</ion-label>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+        </ion-card-content>
+      </ion-card>
+      
+      
+      <ion-card  style="display: none;" id="card3"  >
+       
+        <ion-card-header >
+        
+        <ion-card-title style="text-align: center;">ประวัติการใช้</ion-card-title>
+        </ion-card-header>
+        
+        <ion-card-content  >
+
+          <ion-grid>
+            <ion-row>
+              <ion-col size="1" style="text-align: center; background-color:lightgrey;border: solid 1px grey;" >
+                <b id="status_text" style="display: none;">Status</b>
+              </ion-col>
+              <ion-col size="2.75" style="text-align: center;background-color:lightgrey;border: solid 1px grey;">
+                <b>Date</b>
+              </ion-col>
+              <ion-col size="2.75" style="text-align: center;background-color:lightgrey;border: solid 1px grey;">
+                <b>A-No</b>
+              </ion-col>
+              <ion-col size="2.75" style="text-align: center;background-color:lightgrey;border: solid 1px grey;">
+                <b>EmployeesID</b>
+              </ion-col>
+              <ion-col size="2.75" style="text-align: center;background-color:lightgrey;border: solid 1px grey;">
+                <b>Location</b>
+              </ion-col>
+              
+            </ion-row>
+            <ion-row *ngFor="let getH of data; let i = index">
+              <ion-col size="1" style="border: solid 1px grey; text-align: center;">
+                <ion-icon id="{{ 'text_history' + i }}" name="ellipse" style=" zoom: 1; text-align: center;" ></ion-icon>
+                </ion-col>
+              <ion-col  size="2.75" style="border: solid 1px grey;">
+                {{this.postDataHome.history_date[i]}} 
+              </ion-col>
+              <ion-col size="2.75" style="border: solid 1px grey;">
+                {{this.postDataHome.history_A_No[i] }}
+              </ion-col>
+              <ion-col size="2.75" style="border: solid 1px grey;">
+                {{this.postDataHome.history_empID[i] }}
+              </ion-col>
+              <ion-col size="2.75" style="border: solid 1px grey;">
+                {{this.postDataHome.history_location[i]}}
+              </ion-col>
+              
+            </ion-row>
+          </ion-grid>
+
+
+          <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)" >
+            <ion-infinite-scroll-content
+              loadingSpinner="bubbles"
+              loadingText="Loading more data...">
+            </ion-infinite-scroll-content>
+          </ion-infinite-scroll>
+        </ion-card-content>
+      </ion-card>
+
+    
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+<ion-grid id="top">
+  <ion-row>
+    <ion-col size="12" size-xs="12" size-sm="6" size-md="6" size-lg="6" size xl="6">
+      <ion-card style="height: 300px; " >
+        
+           <ion-card-header style="background-color:#888a8d;">
+          <ion-card-title style="color: white;" >
+            <button (click)="showHistory()" style="color: white; width: 30px;height: 30px; background-color: #888a8d;">
+       
+            </button>
+            Activity
+          </ion-card-title> 
+        </ion-card-header>
+        
+        <ion-card-content style="text-align: center; cursor: pointer;width: 100%;height: 80%;margin-right: 20px;overflow-y: scroll;float: left;"  translucent="true" class="touch">
+
+          <ion-item *ngFor="let getShow of data; let i = index" >
+            <ion-grid>
+              <ion-row>
+                <ion-col size="2">
+                  <ion-label style="white-space: normal; font-size: small;"class="{{this.postDataHome.status_color[i]}}" >
+                    <ion-icon name="{{this.postDataHome.icon[i]}}" style="zoom: 1.5; position: relative;"></ion-icon>
+                    {{this.postDataHome.show_history_status[i]}}
+                  </ion-label>
+                  <ion-label style="white-space: normal; font-size: small; font-weight: bold;" >By :{{this.postDataHome.show_history_update_by[i]}}</ion-label>
+                </ion-col>
+                <ion-col size="8">
+                  <ion-label  style="white-space: normal; cursor:pointer " ><a  style="color: rgb(0, 0, 0); font-size: small;">A-Number :{{this.postDataHome.show_history_A_No[i]}}</a></ion-label>
+                  <ion-label style="white-space:normal; cursor:pointer">{{this.postDataHome.show_history_detail[i]}}</ion-label>
+                </ion-col>
+                <ion-col size="2">
+                  <ion-label style="font-size:small; white-space: normal;" >{{postDataHome.show_history_update_date[i]}}</ion-label>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+      
+          </ion-item>
+  
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" size-xs="12" size-sm="3" size-md="3" size-lg="3" size xl="3">
+      <ion-card>
+        <ion-card-content style="text-align: center; cursor: pointer;">
+            <ion-label style="font-size:initial;">{{postDataHome.allM}}<br></ion-label>
+            <ion-label style="font-size: small;">Total</ion-label>
+        </ion-card-content>
+      
+      </ion-card>
+    </ion-col>
+   
+   
+    <ion-col size="12" size-xs="12" size-sm="3" size-md="3" size-lg="3" size xl="3">
+      <ion-card>
+        <ion-card-content style="text-align: center; cursor: pointer;" (click)="countAllDateHistory()">
+          
+          <ion-label style="font-size:initial; ">{{dataService.dataHome.lastdate}}<br> </ion-label>
+          <ion-label style="font-size: small;">Last Update </ion-label>
+        
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+<ion-card id="wrapper_lastupdate">
+  
+</ion-card>
+
+
+<ion-grid>
+  <ion-row>
+    <ion-col size="12" size-xs="12" size-sm="6" size-md="6" size-lg="6" size xl="6">
+      <ion-card id="cardload">
+        <ion-button (click)="countMaterial()" id="load" style="display: none; "> load</ion-button>
+        <ion-button (click)="clearMaterial()" id="clear" style="display :none; ">clear</ion-button>
+      
+        <ion-list id="list2" >
+         
+         
+          <ion-item>
+          <label>สถานะ</label>
+         
+          <ion-label ><br/><br/><br/>ปกติ : {{postDataHome.all1}} </ion-label>
+          <ion-label ><br/><br/><br/>ซ่อม : {{postDataHome.all2}}</ion-label>
+          <ion-label ><br/><br/><br/>เสีย : {{postDataHome.all3}}</ion-label>
+        </ion-item>
+        
+        </ion-list>
+        <ion-card id="graph" class="welcome-card" style="display: none; width: 95%;height: 100%;">
+          <ion-card-header>
+           
+            <ion-card-title>test</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <canvas #barChart></canvas>
+          </ion-card-content>
+        </ion-card>
+      </ion-card>
+    </ion-col>
+    <ion-col size="12" size-xs="12" size-sm="6" size-md="6" size-lg="6" size xl="6">
+      <ion-card id="cardload2" >
+       
+        <ion-button (click)="countMaterialCategory()" id="load2" style="display: none;"> load</ion-button>
+        <ion-button (click)="clearMaterialCategory()" id="clear2" style="display :none; ">clear</ion-button>
+       
+        <ion-card class="welcome-card" id="graph2"style="display: none">
+          <ion-card-header>
+            <ion-card-title>Simple Bar Chart</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <div id="simplePie" style="width: 100%; height: 100%;"></div>
+            
+          </ion-card-content>
+        </ion-card>
+  
+  </ion-card>
+  
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+
+
+<ion-grid>
+  <ion-row>
+    <ion-col size="2"></ion-col>
+    <ion-col size="8">
+      <ion-card  style="display: none;" id="cardEmp" style="width: 100%; display: none;">
+        
+        
+        
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-card-header >
+                <ion-card-title style="text-align: center;">{{this.dataService.dataHome.search_all}}</ion-card-title>
+              </ion-card-header>
+               <ion-list >
+                <ion-item *ngFor="let getID of data; let i = index">
+                  <ion-label  style="white-space: normal; cursor:pointer " ><a (click)="selectAction2(i)" >{{dataService.dataHome.searchID[i]}}</a></ion-label>
+                </ion-item>
+               </ion-list>
+           </ion-col>
+           <ion-col id="wrapper">
+            <ion-card-content  >
+              <button   (click)="onNoClick()" style="right: 0; position:absolute;  background-color:white;"  fill="outline" color="primary">
+                <ion-icon name="close-circle-outline" style="font-size: 23px;"></ion-icon>
+              </button>
+              <ion-label ><br>A-No</ion-label>
+              <ion-item>
+                <ion-input id='wrapper-A_No' [(ngModel)]="dataService.dataHome.A_No" type="text" readonly=true></ion-input>
+              </ion-item>
+            
+              <ion-label  ><br>IT-No</ion-label>
+              <ion-item>
+                <ion-input id='wrapper-IT_No'[(ngModel)]="dataService.dataHome.ITNo" type="text"readonly=true></ion-input>
+              </ion-item>
+            
+              
+              <ion-label ><br>รหัสพนักงาน</ion-label>
+              <ion-item>
+                <ion-input id='wrapper-emp'[(ngModel)]="dataService.dataHome.emp_ID" type="text" readonly=true></ion-input>
+              </ion-item>
+            
+              <ion-label ><br>แผนก</ion-label>
+              <ion-item>
+                <ion-input id='wrapper-department'[(ngModel)]="dataService.dataHome.Department" type="text" readonly=true></ion-input>
+              </ion-item>
+            
+              <ion-label ><br>ชื่อ-นามสกุล</ion-label>
+              <ion-item>
+                <ion-input id='wrapper-name'[(ngModel)]="dataService.dataHome.Empname" type="text" readonly=true></ion-input>
+              </ion-item>
+              
+              <ion-label ><br>สถานที่</ion-label>
+              <ion-item>
+                <ion-input id = "wrapper-location" [(ngModel)]="this.dataService.dataHome.room"  readonly=true ></ion-input>
+              </ion-item>
+              <ion-label ><br>Description</ion-label>
+              <ion-item>
+                <ion-textarea id = "wrapper-description" [(ngModel)]="this.dataService.dataHome.description"  readonly=true ></ion-textarea>
+              </ion-item>
+              <ion-label ><br>Serial Number</ion-label>
+              <ion-item>
+                <ion-input id = "wrapper-serial_number" [(ngModel)]="this.dataService.dataHome.serial_number"  readonly=true ></ion-input>
+              </ion-item>
+              <ion-label ><br>Manufacturer</ion-label>
+              <ion-item>
+                <ion-input id = "wrapper-manufacturer" [(ngModel)]="this.dataService.dataHome.manufacturer"  readonly=true ></ion-input>
+              </ion-item>
+              <br>
+              <ion-button id="edit" (click)="editSearch()">edit</ion-button>
+            </ion-card-content>
+           </ion-col>
+          </ion-row>
+        </ion-grid>
+          
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+
+</ion-content>
+<ion-footer>
+  ,ll,l,
+</ion-footer>
+
+</ion-app>
+    
+
+
+
+<ion-content id="mobile" style="display: none;">
+  <ion-label>hello</ion-label>
+
+
+
+
+<ion-footer style="height: 9%; border-top : solid 0.3px rgb(163, 162, 162); z-index: 100; background-color: white; ">
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" style="text-align: center; line-height: 50%;">
+       <ion-icon name="home-outline" style="color: black;zoom: 1.5; "></ion-icon><br>
+        <ion-label style="font-size: 70%;">HOME</ion-label>
+      </ion-col>
+      <ion-col size="4" style="text-align: center; line-height: 50%;">
+       <ion-icon name="cube-outline" style="color: black;zoom: 1.5; "></ion-icon><br>
+        <ion-label style="font-size: 70%;">ASSET</ion-label>
+     </ion-col>
+     <ion-col size="4" style="text-align: center; line-height: 50%;">
+       <ion-icon name="person-circle-outline" style="color: black; zoom: 1.5;"></ion-icon><br>
+        <ion-label style="font-size: 70%;">TEST</ion-label>
+     </ion-col>
+    </ion-row>
+  </ion-grid>
+ </ion-footer>
+
+
+</ion-content>
+ -->
+
+
+
+
+
+
+ <ion-header >
+  <ion-toolbar >
+    <ion-menu-button slot='start' menu="start" style="z-index: 1000;" class="topmenu"></ion-menu-button>
+    <!-- <ion-menu-button slot="end" menu="end"></ion-menu-button> -->
+    <div >
+      <ion-grid style="border-bottom: 2px #2780ea;">
+        <ion-row>
+           <ion-col size="2">
+           </ion-col>
+           <ion-col >
+             <ion-grid class="menu1"  >
+               <ion-row >
+                 <ion-col>
+                   <!-- <ion-item lines=none  >
+                     <label style="cursor: pointer; height: 20px; font-weight: bold;font-size: large" ></label>
+                   </ion-item> -->
+                 </ion-col>
+                 <ion-col >
+                  <!-- <ion-item lines=none style="text-align: center;"> -->
+                   <label style="cursor: pointer; height: 20px; font-weight: bold;font-size: large" >Home</label>
+                  <!-- </ion-item> -->
+                 </ion-col>
+                 <ion-col>
+                  
+                   <label (click)="clickAsset()"style="cursor: pointer; height: 20px; font-weight: bold;font-size: large">Asset</label>
+                 </ion-col>
+                 <ion-col>
+                  
+                  <label style="cursor: pointer; height: 20px; font-weight: bold;font-size: large" ></label>
+                  
+                </ion-col>
+               </ion-row>
+             </ion-grid>
+             
+
+          </ion-col>
+          <ion-col size="2" style="text-align: center;">
+            <ion-grid>
+              <ion-row style="margin-top: 2%;"(click)="presentPopover($event)">
+                 <ion-icon name="person-circle-outline" style="zoom: 1.3; top: 40%;cursor: pointer ; " ></ion-icon>
+                  <ion-label class="name" style="right: 0%; top: 40%; font-size: 15px;cursor: pointer ;" >{{this.dataService.profile.username}}</ion-label>
+              </ion-row>
+            </ion-grid>
+            
+           
+            <!-- <ion-item lines=none  >
+            </ion-item> -->
+                          
+
+           </ion-col>
+        </ion-row>
+      </ion-grid>
+     
+    
+    </div>
+       
+
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content style="width: 100%; height: 100%;">
+  <ion-grid >
+    <ion-row>
+
+
+
+        
+      <!-- <ion-col size="12">
+        <ion-card style="left: 15%; z-index: 1;position: fixed; width: 100%;height: 50px;" >
+          <ion-label >sss</ion-label>
+        </ion-card>
+      </ion-col> -->
+     
+   
+      <ion-col size="6">
+        <ion-grid style="height: 50%;">
+          <ion-row  >
+            <ion-col size="4"style="text-align: center;">
+              <ion-card style="height: 100%; width: 100%; ">
+                <ion-card-header>
+                  <ion-card-title style=" font-size: xx-large;">Total</ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-label style="font-size: 200%;">
+                    
+                    {{this.dataService.countasset}}
+                  </ion-label>
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="4"style="text-align: center;">
+              <ion-card style="height: 100%; width: 100%; ">
+                <ion-card-header>
+                  <ion-card-title>
+                    <ion-label style=" font-size: xx-large;">Repair</ion-label>
+                  </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-label style="font-size: 200%;">20</ion-label>
+                  
+                </ion-card-content>
+                
+              </ion-card>
+            </ion-col>
+            <ion-col size="4"style="text-align: center;">
+              <ion-card style="height: 100%; width:100%; ">
+                <ion-card-header>
+                  <ion-card-title>
+                    <ion-label style=" font-size: xx-large;">TEST</ion-label>
+                  </ion-card-title>
+                </ion-card-header>
+                <ion-card-content>
+                  <ion-label style="font-size: 200%;">test</ion-label>
+                  
+                </ion-card-content>
+              </ion-card>
+            </ion-col>
+            <ion-col size="12"  >
+              <ion-card style="height: 450px;  width: 100%; background-color: #1b59a4; " >
+        
+                <ion-card-header style="background-color:#1b59a4;">
+               <ion-card-title style="color: white;" >
+                 <button (click)="showHistory()" style="color: white; width: 30px;height: 30px; background-color: #1b59a4;">
+            
+                 </button>
+                 Activity
+               </ion-card-title> 
+             </ion-card-header>
+             
+             <ion-card-content style="text-align: center; cursor: pointer;width: 100%;height: 80%;padding: 0;overflow-y: scroll;float: left;"  translucent="true" class="touch">
+            
+               <ion-item *ngFor="let getShow of data; let i = index" >
+                 <ion-grid>
+                   <ion-row>
+                     <ion-col size="2">
+                       <ion-label style="white-space: normal; font-size: small;"class="{{this.postDataHome.status_color[i]}}" >
+                         <ion-icon name="{{this.postDataHome.icon[i]}}" style="zoom: 1.5; position: relative;"></ion-icon>
+                         {{this.postDataHome.show_history_status[i]}}
+                       </ion-label>
+                       <ion-label style="white-space: normal; font-size: small; font-weight: bold;" >By :{{this.postDataHome.show_history_update_by[i]}}</ion-label>
+                     </ion-col>
+                     <ion-col size="8">
+                       <ion-label  style="white-space: normal; cursor:pointer " ><a  style="color: rgb(0, 0, 0); font-size: small;">A-Number :{{this.postDataHome.show_history_A_No[i]}}</a></ion-label>
+                       <ion-label style="white-space:normal; cursor:pointer">{{this.postDataHome.show_history_detail[i]}}</ion-label>
+                     </ion-col>
+                     <ion-col size="2">
+                       <ion-label style="font-size:small; white-space: normal;" >{{postDataHome.show_history_update_date[i]}}</ion-label>
+                     </ion-col>
+                   </ion-row>
+                 </ion-grid>
+               </ion-item>
+            
+             </ion-card-content>
+             
+               <div style="background-color: #1b59a4; height: 15px; z-index: 15;"></div>
+            
+            </ion-card>
+            
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      
+  
+
+
+
+      </ion-col>
+ 
+
+      <ion-col size-sm="6" size-md="6" size-lg="6" size-xl="6">
+  
+        <div style="margin-top: 2%;">
+          <ion-card  style="height: 100%;">
+            <div >
+              <ion-buttons >
+                <ion-button id="graph1" style="width: 33.3%; border:solid 1px blue;border-top: thick solid blue; "(click)="clickGraph1()">
+                graph1
+              </ion-button>
+              <ion-button id="graph2" style="width: 33.3%; border:solid 1px rgb(226, 223, 223) "(click)="clickGraph2()">
+                graph2
+              </ion-button>
+              <ion-button id="graph3" style="width: 33.3%; border:solid 1px rgb(226, 223, 223) "(click)="clickGraph3()" >
+                graph3
+              </ion-button>
+              </ion-buttons>
+            </div>
+            <ion-card-header>
+              <ion-card-subtitle>{{subtitle}}</ion-card-subtitle>
+              <ion-card-title>
+                    {{title}}
+                  </ion-card-title>
+              </ion-card-header>
+              <ion-card-content style="text-align: center; padding: 20px;">
+                  <!-- <div id="pieChart"></div> -->
+            
+                    <canvas style="width: 50%;" #barChart ></canvas>
+         
+                   
+                    <!-- <canvas id="ch" style="width: 50%; display:none;" #barChart></canvas> -->
+                   
+                  <div  style="margin: 10px;">
+                    <button style="background-color: #2780EA ;color: white; "(click)="test1()">2020</button>&nbsp;
+                    <button style="background-color: #2780EA ;color: white; "(click)="testclear()">2021</button>
+                  </div>    
+            </ion-card-content>
+            
+       </ion-card>
+   
+       </div>
+    </ion-col>
+    <!-- <ion-col size-sm="6" size-md="6" size-lg="6" size-xl="6">
+      <div style=" width: 100%; ">
+      
+       <ion-card style="height: 100%;">
+        <ion-card-header>
+          <ion-card-title>
+            test
+          </ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <canvas style="width: 50%;" #barChart></canvas>
+        </ion-card-content>
+        
+    </ion-card>
+    </div>
+    </ion-col> -->
+
+     
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

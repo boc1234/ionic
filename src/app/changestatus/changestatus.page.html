@@ -1,0 +1,127 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar class="header"  [color]="networkStatus && networkStatus.connected ? 'primary' : 'dark'">
+    <ion-menu-button slot='start' menu="start" ></ion-menu-button>
+    <ion-title>
+      ค้นหา
+    </ion-title>
+    <!-- <ion-button slot="start" color="secondary">
+      <ion-menu-button menu="start"></ion-menu-button>
+    </ion-button> -->
+
+  </ion-toolbar>
+</ion-header>
+<ion-content class="card">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content ></ion-refresher-content>
+  </ion-refresher>
+
+
+      <ion-grid>
+        <ion-row>
+          <ion-col  size-md="2" size-lg="2"></ion-col>
+          <ion-col size="6" size-xs="12" size-sm="12" size-md="8" size-lg="8">
+            <ion-card id="card_scan" style="width: 70%; left: 9%;">
+            <ion-grid>
+              <ion-row>
+                
+                <ion-col  >
+
+               
+                  <ion-card-content >
+                    <ion-input placeholder="CLICK FOR SCAN" style="height: 50px;" name = "A_No" type="text" value= "" autofocus="autofocus" onfocus="this.select()"   [(ngModel)]="postDataChangeStatus.A_No" onclick=""></ion-input>
+                    
+                    <button  ion-button (click)="selectStatus()" type="hidden" id="btnStatus"  style="display:none;">enter</button>
+                    <button  ion-button (click)="selectAction()" type="hidden" id="auto_trigger"  style="display: none;">enter</button>
+                     <br>
+              
+                        <ion-label >สถานะ</ion-label>
+                    <ion-item>
+                      <ion-label></ion-label>
+                      <ion-select [(ngModel)]="postDataChangeStatus.getStatus" (ngModelChange)="chooseStatus($event)">
+                        <ion-select-option *ngFor="let getStatus of dataService.dataScan.eleStatus" [value]="getStatus" >{{getStatus}}</ion-select-option>   
+                     </ion-select>
+                    </ion-item>    
+                         
+                    <ion-label id="fix-report-label" style="display: none;"><br>รายงานการซ่อม</ion-label>
+                    <ion-item id = "fix-report" style="display: none;">
+                      <ion-input [(ngModel)]="this.dataService.dataScan.fix"  ></ion-input>
+                    </ion-item>
+                    </ion-card-content>
+              
+            
+                </ion-col>
+                <ion-col id="wrapper2">
+                          
+                  
+                   <ion-card-header >
+        
+                    <ion-card-title style="text-align: center;">{{dataService.dataScan.A_No}}</ion-card-title>
+                 </ion-card-header>
+                  
+                  <ion-card-content >
+                
+                
+                  <ion-label  ><br>IT-No</ion-label>
+                  <ion-item>
+                    <ion-input [(ngModel)]="dataService.dataScan.ITNo" type="text" ></ion-input>
+                  </ion-item>
+                
+                  
+                  <ion-label ><br>รหัสพนักงาน</ion-label>
+                  <ion-item>
+                    <ion-input [(ngModel)]="dataService.dataScan.emp_ID" type="text"></ion-input>
+                  </ion-item>
+                
+                  <ion-label ><br>แผนก</ion-label>
+                  <ion-item>
+                    <ion-input [(ngModel)]="dataService.dataScan.Department" type="text" ></ion-input>
+                  </ion-item>
+                
+                  <ion-label ><br>ชื่อ-นามสกุล</ion-label>
+                  <ion-item>
+                    <ion-input [(ngModel)]="dataService.dataScan.Empname" type="text" ></ion-input>
+                  </ion-item>
+                  
+                  <ion-label ><br>สถานที่</ion-label>
+                  <ion-item>
+                    <ion-input id = "location"[(ngModel)]="this.dataService.dataScan.room"  ></ion-input>
+                  </ion-item>
+            
+                  <ion-label ><br>สถานะ</ion-label>
+                  <ion-item>
+                    <ion-input id = "status"[(ngModel)]="this.dataService.dataScan.status"readonly  ></ion-input>
+                  </ion-item>
+
+              
+                  <ion-grid>
+                    <ion-row class="ion-align-items-end">
+                      <ion-col size="6" size-xs="12" size-sm="8" size-md="8" size-lg="6">
+                        <button   style="background-color: rgb(90, 150, 219);width: 100%; padding: 10px;" ion-button (click)="updateAction()" >update</button>
+                      </ion-col>
+                    </ion-row>
+                    </ion-grid>
+        
+        </ion-card-content>
+      
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+      </ion-card>
+
+     
+    </ion-col>
+   
+      </ion-row>
+      </ion-grid>
+
+
+
+
+
+   <ion-col  size="6" size-xs="12" size-sm="12" size-md="12" size-lg="6" >
+  
+</ion-col>
+
+
+
+</ion-content>

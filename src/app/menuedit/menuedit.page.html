@@ -1,0 +1,97 @@
+<!-- <ion-content >
+  <ion-list>
+    <ion-item>
+      <ion-label (click)="changePageUpdateLocation()">
+  
+        Update Location
+      </ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label (click)="changePageUpdateStatus()">
+    
+        Update Status
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content> -->
+
+<ion-header>
+  <ion-toolbar style="text-align: center;">
+    <ion-title>
+      Update
+    </ion-title>
+  </ion-toolbar>
+    
+</ion-header>
+
+<ion-content style="height: 100%;">
+<ion-grid style="height: 30%;">
+  <ion-row style="height: 100%; text-align: center;padding-top: 20px;" >
+    <ion-col size=6 >
+      <ion-card style="height:100%;"(click)='changePageUpdateLocation()' >
+        <div style="height: 20%;"></div>
+        <ion-icon name="location-outline" style="zoom:3;"></ion-icon><br>
+        <ion-label style="font-size: larger;">Location</ion-label>
+      </ion-card>
+    </ion-col>
+    <ion-col size=6 >
+      <ion-card style="height:100%;" (click)='changePageUpdateStatus()'>
+        <div style="height: 20%;"></div>
+        <ion-icon name="construct-outline" style="zoom:3;"></ion-icon><br>
+        <ion-label style="font-size: larger;">Status</ion-label>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+  <ion-row style="height: 100%; text-align: center ;padding-top: 20px; " >
+    <ion-col size=6 >
+      <ion-card style="height:100%;" >
+        <div style="height: 20%;"></div>
+        <ion-icon name="people-outline" style="zoom:3;"></ion-icon><br>
+        <ion-label style="font-size: larger;">Employee</ion-label>
+      </ion-card>
+    </ion-col>
+    <ion-col size=6 >
+      <ion-card style="height:100%;" >
+        <div style="height: 20%;"></div>
+        <ion-icon name="log-in-outline" style="zoom: 3;"></ion-icon><br>
+        <ion-label style="font-size: larger;">Receive</ion-label>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>
+
+<ion-footer style="height: 9%; border-top : solid 0.3px rgb(163, 162, 162); z-index: 100; background-color: white;">
+  <ion-grid style="height: 100%;">
+    <ion-row style="height: 100%;">
+      <ion-col size="3" style="text-align: center; line-height: 50%; height: 100%;" (click)="operation.changePageHome()">
+       <div style="height: 60%; text-align: center;">
+         <ion-icon name="home-outline" style="color: black;zoom: 1.5; width: 100%;height: 100%; "></ion-icon><br>
+        <ion-label style="font-size: small;">Home</ion-label>
+       </div>
+      </ion-col>
+
+
+      <ion-col size="3" style="text-align: center; line-height: 50%;color: black;" (click)="operation.changePageAsset()">
+       <div style="height: 60%; text-align: center;">
+          <ion-icon name="scan" style="zoom: 1.5;width: 100%;height: 100%; "></ion-icon><br>
+          <ion-label style="font-size: small;">Scan</ion-label>
+       </div>  
+     </ion-col>
+
+      <ion-col size="3"  style="text-align: center; line-height: 50%;color: #2780EA ;" (click)="operation.changePageEdit()">
+       <div style="height: 60%; text-align: center;">
+       <ion-icon name="pencil-outline" style="zoom: 1.5; width: 100%;height: 100%; "></ion-icon>
+        <ion-label style="font-size: small;">Update</ion-label>
+       </div>
+     </ion-col>
+     
+     <ion-col size="3" style="text-align: center; line-height: 50%;" (click)='operation.changePageAccount()'>
+       <div style="height: 60%; text-align: center;">
+       <ion-icon name="person-circle-outline" style="color: black; zoom: 1.5;width: 100%;height: 100%;"></ion-icon><br>
+        <ion-label style="font-size: small;">Account</ion-label>
+       </div>
+     </ion-col>
+    </ion-row>
+  </ion-grid>
+ </ion-footer>

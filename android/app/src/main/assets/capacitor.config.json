@@ -1,0 +1,13 @@
+{
+	"appId": "com.your.app",
+	"appName": "network",
+	"bundledWebRuntime": false,
+	"npmClient": "npm",
+	"webDir": "src",
+	"plugins": {
+		"SplashScreen": {
+			"launchShowDuration": 0
+		}
+	},
+	"cordova": {}
+}

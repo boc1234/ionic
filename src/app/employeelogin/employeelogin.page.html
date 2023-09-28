@@ -1,0 +1,35 @@
+<ion-content >
+  <ion-grid  style="background-color: #cae2ff; height: 100%;">
+    <ion-row style="height: 20%; width: 100%;">
+    </ion-row>
+    <ion-row >
+      <ion-col size-xs='0'  size-sm='1' size-md='1' size-lg="3" size-xl='3'></ion-col>
+      <ion-col size-xs='12'  size-sm='10' size-md='10' size-lg="6" size-xl='6' >
+        <div  style="height: 80%;background-color: white;vertical-align: middle;" >
+
+          <ion-title style="text-align: center; margin: 10% 10% 3% 10%;font-size: xx-large; padding-top: 5%;">
+            <ion-label >
+              Login
+            </ion-label>
+          </ion-title>
+            <div style=" padding-left: 17%;">
+
+              <ion-input placeholder="Employee code" name="username" type="text" style="border: solid 1px ;width: 80%;"  [(ngModel)]="this.dataService.employeeno" (keyup.enter)="enterInput()" ></ion-input>
+  
+         
+       
+            </div>
+            
+   
+            <br>
+            <div style="text-align: center; margin: 5% 0 10% 0; height: 10%;">
+              <button ion-button (click)="getEmployee()" style="width: 20%;height: 100%; font-size: larger;background-color: #2780ea; color: white ;">Next</button>
+            </div>
+         
+        </div>
+      </ion-col>
+  
+    </ion-row>
+   
+  </ion-grid>
+</ion-content>

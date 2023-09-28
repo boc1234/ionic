@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="menuedit" ></ion-back-button>
+    </ion-buttons>
+    <ion-title>updatelist</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar (ionInput)="filterArr($event)"></ion-searchbar>
+  <!-- <table>
+    <thead>
+      <th>Date</th>
+      <th>A-Number</th>
+      <th>Detail</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of arr">
+        <td>{{item.Date}}</td>
+        <td>{{item.No}}</td>
+        <td>{{item.Detail}}</td>
+      </tr>
+    </tbody>
+  </table> -->
+  <ion-grid style=" text-align: center;">
+    <!-- <ion-row style="font-size: larger;">
+      <ion-col>
+        <ion-label>Date</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>A-Number</ion-label>
+      </ion-col>
+      <ion-col>
+        <ion-label>Detail</ion-label>
+      </ion-col>
+    </ion-row> -->
+    <ion-row *ngFor="let item of arr;let i = index">
+      <ion-list style="width: 100%;" (click)='showsub(i)'>
+      <li>
+        <ion-item lines=none >
+      <!-- <ion-col> -->
+        <ion-label>
+          {{item.Date}}<br>
+          {{item.No}}<br>
+          {{item.Detail}}
+        </ion-label>
+      <!-- </ion-col>
+      <ion-col> -->
+        
+      <!-- </ion-col>
+      <ion-col> -->
+        <!-- id="wrappermenuasset" style="visibility: hidden;" -->
+      <!-- </ion-col> -->
+      </ion-item  >
+<!-- 
+        <ui    >
+          <ion-item>
+            <ion-label></ion-label>
+          </ion-item>
+          
+        </ui> -->
+      </li>
+      </ion-list>
+    </ion-row>
+    <ion-infinite-scroll threshold="150px" (ionInfinite)="loadData($event)">
+      <ion-infinite-scroll-content
+        loadingSpinner="bubbles"
+        loadingText="Loading more data...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </ion-grid>
+  <!-- <ion-item  readonly  *ngFor="let item of data; index as i" lines=none >
+   
+    <ion-label >
+      {{this.getData.getA[i]}}<br>
+      {{this.getData.getDate[i]}}<br>
+      {{this.getData.getDetail[i]}}<br>
+      
+    </ion-label>
+  </ion-item> -->
+  
+</ion-content>
+
+
+
+    <!-- <ion-label  position="floating"></ion-label> -->
+    <!-- <ion-textarea rows="1" cols="20" style="border-bottom: solid 1px;" readonly  *ngFor="let item of this.getData.getDate; index as i" >
+      {{this.getData.getA[i]}}<br>
+      {{this.getData.getDate[i]}}<br>
+      {{this.getData.getDetail[i]}}
+    
+    </ion-textarea> -->
